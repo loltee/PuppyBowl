@@ -12,9 +12,10 @@ const APIURL = `https://fsa-puppy-bowl.herokuapp.com/api/${cohortName}/players`;
  */
 const fetchAllPlayers = async () => {
     try {
+        //fetching all players from API
     const response = await fetch(APIURL);
     const players = await response.json();
-    return players;
+    return players; // returns an array of the players
     } catch (err) {
         console.error('Uh oh, trouble fetching players!', err);
     }
@@ -22,12 +23,27 @@ const fetchAllPlayers = async () => {
 
 const fetchSinglePlayer = async (playerId) => {
     try {
+        //fetching single player feom API
+        const response = await fetch(`${APIURL}/${playerId}`);
+        const player = await response.json();
+        //creating div element with class name player
+        const playerElement = document.createElement("div");
+        playerElement.classList.add("player");
+        playerElement.innerHTML = `
+                <h4>${player.name}</h4>
+                <p>${player.breed}</p>
+                <p>${player.status}</p>
+                <p>${player.imageUrl}</p>
+            `;
+        playerContainer.appendChild(playerElement);
+        return player;
 
     } catch (err) {
         console.error(`Oh no, trouble fetching player #${playerId}!`, err);
     }
 };
 
+// adding new player
 const addNewPlayer = async (playerObj) => {
     try {
 
@@ -36,6 +52,7 @@ const addNewPlayer = async (playerObj) => {
     }
 };
 
+//remove player
 const removePlayer = async (playerId) => {
     try {
 
