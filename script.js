@@ -119,15 +119,15 @@ const renderAllPlayers = (playerList) => {
 
             // added eventlisteners to buttons
 
-            document.querySelectorAll(".details").forEach((button) =>
+            document.querySelectorAll(".details-button").forEach((button) =>
                 button.addEventListener("click", async (event) => {
                     await fetchSinglePlayer(event.target.id);
                     const players = await fetchAllPlayers();
-                    renderAllPlayers(players);
+                    renderAllPlayers(players.data.players);
                 })
             );
 
-            document.querySelectorAll(".remove").forEach((button) =>
+            document.querySelectorAll(".remove-button").forEach((button) =>
                 button.addEventListener("click", async (event) => {
                     await removePlayer(event.target.dataset.id);
                     const players = await fetchAllPlayers();
@@ -176,15 +176,18 @@ const renderNewPlayerForm = () => {
 
       };
 
-      await renderNewPlayerForm(playerData.name, playerData.breed, playerData.status, playerData.imageUrl);
+     // await renderNewPlayerForm(playerData.name, playerData.breed, playerData.status, playerData.imageUrl);
 
+     renderNewPlayerForm(playerData);
       const players = await fetchAllPlayers();
       renderAllPlayers(players.data.players);
 
-      form.name.value = '';
-      form.breed.value = '';
-      form.status.value = '';
-      form.imageUrl.value = '';
+    //   form.name.value = '';
+    //   form.breed.value = '';
+    //   form.status.value = '';
+    //   form.imageUrl.value = '';
+
+    form.reset();
     });
 
     } catch (err) {
