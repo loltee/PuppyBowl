@@ -25,7 +25,9 @@ const fetchSinglePlayer = async (playerId) => {
     try {
         //fetching single player feom API
         const response = await fetch(`${APIURL}/${playerId}`);
-        const player = await response.json();
+        let player = await response.json();
+        player = player.data.player;
+
         //creating div element with class name player
         const playerElement = document.createElement("div");
         playerElement.classList.add("playerCard");
@@ -121,13 +123,13 @@ const renderAllPlayers = (playerList) => {
 
             // added eventlisteners to buttons
 
-            document.querySelectorAll(".details-button").forEach((button) =>
-                button.addEventListener("click", async (event) => {
-                    await fetchSinglePlayer(event.target.dataset.id);
-                    const players = await fetchAllPlayers();
-                    renderAllPlayers(players.data.players);
-                })
-            );
+
+            const detailsButton = playerElement.querySelector(".details-button");
+            detailsButton.addEventListener("click", async (event) => {
+            const players = event.target.dataset.id;
+            await fetchSinglePlayer(players);
+            console.log(players);
+         });
 
             document.querySelectorAll(".remove-button").forEach((button) =>
                 button.addEventListener("click", async (event) => {
