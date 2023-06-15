@@ -28,7 +28,7 @@ const fetchSinglePlayer = async (playerId) => {
         const player = await response.json();
         //creating div element with class name player
         const playerElement = document.createElement("div");
-        playerElement.classList.add("player");
+        playerElement.classList.add("playerCard");
         playerElement.innerHTML = `
                 <h4>${player.name}</h4>
                 <p>${player.breed}</p>
@@ -50,13 +50,15 @@ const addNewPlayer = async (playerObj) => {
             method: 'POST',
             headers: {
               'Content-Type': 'application/json',
-              'Accept': 'application/json'
+            //   'Accept': 'application/json'
             },
             body: JSON.stringify(playerObj),
           });
           const player = await response.json();
           console.log(player);
-          fetchAllPlayers();
+          const players = await fetchAllPlayers();
+        renderAllPlayers(players.data.players);
+          
 
     } catch (err) {
         console.error('Oops, something went wrong with adding that player!', err);
@@ -121,7 +123,7 @@ const renderAllPlayers = (playerList) => {
 
             document.querySelectorAll(".details-button").forEach((button) =>
                 button.addEventListener("click", async (event) => {
-                    await fetchSinglePlayer(event.target.id);
+                    await fetchSinglePlayer(event.target.dataset.id);
                     const players = await fetchAllPlayers();
                     renderAllPlayers(players.data.players);
                 })
@@ -131,7 +133,7 @@ const renderAllPlayers = (playerList) => {
                 button.addEventListener("click", async (event) => {
                     await removePlayer(event.target.dataset.id);
                     const players = await fetchAllPlayers();
-                    renderAllPlayers(players);
+                    renderAllPlayers(players.data.players);
                 })
             );
         
@@ -149,14 +151,14 @@ const renderAllPlayers = (playerList) => {
  */
 const renderNewPlayerForm = () => {
     try {
-        // const newPlayerForm = doucment.createElement('form');
-        // newPlayerForm.classList.add('info');
+        const newPlayerForm = document.createElement('form');
+        newPlayerForm.classList.add('info');
         const newPlayerFormHTML = `
         <form id="new-player-form">
           <input type="text" name="name" placeholder="Name" required />
           <input type="text" name="breed" placeholder="Breed" required />
           <input type="text" name="status" placeholder="Status" required />
-          <input type="text" name="imageUrl" placeholder="imageUrl" required />
+          <input type="text" name="imageUrl" placeholder="Image Url" required />
           <button type="submit">Add Player</button>
         </form>
       `;
@@ -172,15 +174,15 @@ const renderNewPlayerForm = () => {
         name: form.name.value,
         breed: form.breed.value,
         status: form.status.value,
-        imageUrl: form.imageUrl.Value
+        imageUrl: form.imageUrl.value
 
       };
 
-     // await renderNewPlayerForm(playerData.name, playerData.breed, playerData.status, playerData.imageUrl);
+     //await renderNewPlayerForm(playerData.name, playerData.breed, playerData.status, playerData.imageUrl);
 
-     renderNewPlayerForm(playerData);
+     await addNewPlayer(playerData);
       const players = await fetchAllPlayers();
-      renderAllPlayers(players.data.players);
+      await renderAllPlayers(players.data.players);
 
     //   form.name.value = '';
     //   form.breed.value = '';
@@ -199,7 +201,7 @@ const init = async () => {
     const players = await fetchAllPlayers();
     renderAllPlayers(players.data.players);
 
-    renderNewPlayerForm(players);
+    renderNewPlayerForm(players.data.players);
 }
 
 init();
