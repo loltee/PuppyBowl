@@ -46,6 +46,17 @@ const fetchSinglePlayer = async (playerId) => {
 // adding new player
 const addNewPlayer = async (playerObj) => {
     try {
+        const response = await fetch(APIURL, {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json',
+              'Accept': 'application/json'
+            },
+            body: JSON.stringify(playerObj),
+          });
+          const player = await response.json();
+          console.log(player);
+          fetchAllPlayers();
 
     } catch (err) {
         console.error('Oops, something went wrong with adding that player!', err);
@@ -55,6 +66,12 @@ const addNewPlayer = async (playerObj) => {
 //remove player
 const removePlayer = async (playerId) => {
     try {
+        const response = await fetch(`${APIURL}/${playerId}`, {
+            method: "DELETE",
+          });
+          const player = await response.json();
+          console.log(player);
+          fetchAllPlayers();
 
     } catch (err) {
         console.error(
@@ -112,11 +129,12 @@ const renderAllPlayers = (playerList) => {
 
             document.querySelectorAll(".remove").forEach((button) =>
                 button.addEventListener("click", async (event) => {
-                    await removePlayer(event.target.id);
+                    await removePlayer(event.target.dataset.id);
                     const players = await fetchAllPlayers();
                     renderAllPlayers(players);
                 })
             );
+        
         });
 
     } catch (err) {
@@ -131,6 +149,43 @@ const renderAllPlayers = (playerList) => {
  */
 const renderNewPlayerForm = () => {
     try {
+        // const newPlayerForm = doucment.createElement('form');
+        // newPlayerForm.classList.add('info');
+        const newPlayerFormHTML = `
+        <form id="new-player-form">
+          <input type="text" name="name" placeholder="Name" required />
+          <input type="text" name="breed" placeholder="Breed" required />
+          <input type="text" name="status" placeholder="Status" required />
+          <input type="text" name="imageUrl" placeholder="imageUrl" required />
+          <button type="submit">Add Player</button>
+        </form>
+      `;
+
+
+    newPlayerFormContainer.innerHTML = newPlayerFormHTML;
+
+    const form = newPlayerFormContainer.querySelector('form');
+    form.addEventListener('submit', async (event) => {
+      event.preventDefault();
+
+      const playerData = {
+        name: form.name.value,
+        breed: form.breed.value,
+        status: form.status.value,
+        imageUrl: form.imageUrl.Value
+
+      };
+
+      await renderNewPlayerForm(playerData.name, playerData.breed, playerData.status, playerData.imageUrl);
+
+      const players = await fetchAllPlayers();
+      renderAllPlayers(players.data.players);
+
+      form.name.value = '';
+      form.breed.value = '';
+      form.status.value = '';
+      form.imageUrl.value = '';
+    });
 
     } catch (err) {
         console.error('Uh oh, trouble rendering the new player form!', err);
@@ -141,7 +196,7 @@ const init = async () => {
     const players = await fetchAllPlayers();
     renderAllPlayers(players.data.players);
 
-    renderNewPlayerForm();
+    renderNewPlayerForm(players);
 }
 
 init();
