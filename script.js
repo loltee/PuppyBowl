@@ -5,6 +5,7 @@ const newPlayerFormContainer = document.getElementById('new-player-form');
 const cohortName = '2302-ACC-ET-WEB-PT-E';
 // Use the APIURL variable for fetch requests
 const APIURL = `https://fsa-puppy-bowl.herokuapp.com/api/${cohortName}/players`;
+const teamId = `https://fsa-puppy-bowl.herokuapp.com/api/${cohortName}/teams`;
 
 /**
  * It fetches all players from the API and returns them
@@ -35,6 +36,7 @@ const fetchSinglePlayer = async (playerId) => {
                 <h4>${player.name}</h4>
                 <p>${player.breed}</p>
                 <p>${player.status}</p>
+                <p>${player.teamId}</p>
                 <p>${player.imageUrl}</p>
             `;
         playerContainer.appendChild(playerElement);
@@ -44,6 +46,8 @@ const fetchSinglePlayer = async (playerId) => {
         console.error(`Oh no, trouble fetching player #${playerId}!`, err);
     }
 };
+
+
 
 // adding new player
 const addNewPlayer = async (playerObj) => {
@@ -115,6 +119,7 @@ const renderAllPlayers = (playerList) => {
                     <h4>${player.name}</h4>
                     <p>${player.breed}</p>
                     <p>${player.status}</p>
+                    <p>${player.teamId}</p>
                     <img src="${player.imageUrl}" class="img" alt="${player.name}"></br><br>
                     <button class="details-button" data-id="${player.id}">See Details</button>
                     <button class="remove-button" data-id="${player.id}">Remove</button>
