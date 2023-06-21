@@ -78,8 +78,6 @@ const renderAllPlayers = (playerList) => {
             allPlayersElement.innerHTML = `
            <h1>${player.name}</h1>
            
-            <button class="delete-button" data-id="${player.id}">Remove</button>
-            <button class="delete-button" data-id="${player.id}">See Details</button>
           `
             const h1 = document.createElement("h1");
         h1.innerHTML = "hello"
