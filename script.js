@@ -29,18 +29,35 @@ const fetchSinglePlayer = async (playerId) => {
         let player = await response.json();
         player = player.data.player;
 
-        //creating div element with class name player
+        const teamsResponse = await fetch(teamId);
+        let teams = await teamsResponse.json();
+        teams = teams.data.teams;
+        
+
+        //creating div element with class name player  //<p>${player.teamId}</p>
         const playerElement = document.createElement("div");
-        playerElement.classList.add("playerCard");
+        playerElement.classList.add("detailCard");
         playerElement.innerHTML = `
-                <h4>${player.name}</h4>
-                <p>${player.breed}</p>
-                <p>${player.status}</p>
-                <p>${player.teamId}</p>
-                <p>${player.imageUrl}</p>
+        <button class="close-button">X</button>
+                <h2>${player.name}</h2>
+                <p> Breed: ${player.breed}</p>
+                <p> Status: ${player.status}</p>
+                <p> Score: ${teams.score}</p>
+                <p> TeamsId: ${teams.teamId}</p>
+                <p> CohortId: ${player.cohortId}</p>
+                
+                
+                
             `;
-        playerContainer.appendChild(playerElement);
-        return player;
+            playerContainer.appendChild(playerElement);
+       
+        const closeButton = playerElement.querySelector(".close-button");
+        closeButton.addEventListener("click", () => {
+        playerElement.remove();
+    });
+
+    console.log(`${player}+${teams}`);
+    return player && teams;
 
     } catch (err) {
         console.error(`Oh no, trouble fetching player #${playerId}!`, err);
@@ -109,6 +126,11 @@ const removePlayer = async (playerId) => {
  * @param playerList - an array of player objects
  * @returns the playerContainerHTML variable.
  */
+
+
+
+/// <p>${player.teamId}</p>
+
 const renderAllPlayers = (playerList) => {
     try {
         playerContainer.innerHTML = "";
@@ -116,12 +138,15 @@ const renderAllPlayers = (playerList) => {
             const playerElement = document.createElement("div");
             playerElement.classList.add("playerCard");
             playerElement.innerHTML = `
-                    <h4>${player.name}</h4>
-                    <p>${player.breed}</p>
-                    <p>${player.status}</p>
-                    <p>${player.teamId}</p>
+                    
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                    <h2>${player.name}</h2>
                     <img src="${player.imageUrl}" class="img" alt="${player.name}"></br><br>
-                    <button class="details-button" data-id="${player.id}">See Details</button>
+                    <button class="details-button" data-id="${player.id}">
+                    <span></span><span></span><span></span><span></span>See Details</button>
                     <button class="remove-button" data-id="${player.id}">Remove</button>
                     `;
             playerContainer.appendChild(playerElement);
@@ -161,12 +186,14 @@ const renderNewPlayerForm = () => {
         const newPlayerForm = document.createElement('form');
         newPlayerForm.classList.add('info');
         const newPlayerFormHTML = `
-        <form id="new-player-form">
+        
+        <form>
+        <h2> New Player </h2>
           <input type="text" name="name" placeholder="Name" required />
           <input type="text" name="breed" placeholder="Breed" required />
           <input type="text" name="status" placeholder="Status" required />
           <input type="text" name="imageUrl" placeholder="Image Url" required />
-          <button type="submit">Add Player</button>
+          <button type="submit"><span></span><span></span><span></span><span></span>Add Puppy</button>
         </form>
       `;
 
