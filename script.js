@@ -138,11 +138,6 @@ const renderAllPlayers = (playerList) => {
             const playerElement = document.createElement("div");
             playerElement.classList.add("playerCard");
             playerElement.innerHTML = `
-                    
-                    <span></span>
-                    <span></span>
-                    <span></span>
-                    <span></span>
                     <h2>${player.name}</h2>
                     <img src="${player.imageUrl}" class="img" alt="${player.name}"></br><br>
                     <button class="details-button" data-id="${player.id}">
