@@ -11,7 +11,7 @@ body {
   background-image: linear-gradient(180deg, white 60%, black 40%);
   
 }
-
+/* Heading puppy bowl */
 .box{
   position: relative;
   width: 200px;
@@ -33,7 +33,7 @@ body {
               0 0 20px #ff0077;
   
 }
-
+ 
 .lightbar{
   position: absolute;
   top: 0;
@@ -107,7 +107,7 @@ body {
     transform:  translateX(0%);
   }
 }
-
+/* body plyer card */
 #all-players-container {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
@@ -150,55 +150,7 @@ transform: translate(-1.5%, -1.5%);
   margin-top: 5%;
     
 }
-
-
-.detailCard .content{
-  position: relative;
-  max-width: 800px;
-}
-
-.detailCard .content img{
-  max-width: 100%;
-  display:block;
-
-
-}
-
-.detailCard h2 {
-  text-shadow: 0 0 1px #00b3ff;
-  color: black;
-  line-height: 1.5;
-  text-align: center;
-  margin-bottom: 10%;
-  text-transform: uppercase;
-  font-size: medium;
-
-}
-.detailCard p {
-  text-shadow: 0 0 10px #4400ff,
-              0 0 20px #4400ff;
-  color: black;
-  font-size: 16px;
-  line-height: 1.5;
-  text-align: left;
-  margin-top: 5%;
-  
-}
-
-#popup{
-  position: fixed;
-  top: 55%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  width: 300px;
-  height: 70%;
-  padding: 20px;
-  box-shadow: 0 5px 30px rgba(0,0,0,.30);
-  background: #fff;
-  z-index: 2;
-}
-
-
+/* buttons */
 .details-button, .remove-button {
 
   margin-left: 5%;
@@ -304,6 +256,57 @@ transform: translate(-1.5%, -1.5%);
   background-color: rgb(235, 69, 69);
   color: white;
 }
+
+/* detail card popup */
+#popup{
+  position: fixed;
+  top: 55%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 300px;
+  height: 70%;
+  padding: 20px;
+  box-shadow: 0 5px 30px rgba(0,0,0,.30);
+  background: #fff;
+  z-index: 2;
+}
+
+/* detail card */
+.detailCard .content{
+  position: relative;
+  max-width: 800px;
+}
+/* detail image */
+.detailCard .content img{
+  max-width: 100%;
+  display:block;
+
+
+}
+/* detail heading name */
+.detailCard h2 {
+  text-shadow: 0 0 1px #00b3ff;
+  color: black;
+  line-height: 1.5;
+  text-align: center;
+  margin-bottom: 10%;
+  text-transform: uppercase;
+  font-size: medium;
+
+}
+/* details  */
+.detailCard p {
+  text-shadow: 0 0 10px #4400ff,
+              0 0 20px #4400ff;
+  color: black;
+  font-size: 16px;
+  line-height: 1.5;
+  text-align: left;
+  margin-top: 5%;
+  
+}
+
+/* close button in the popup card */
 .close-button {
   
   margin: 1px 90%;
@@ -319,7 +322,7 @@ transform: translate(-1.5%, -1.5%);
 
 }
 
-
+/* form for new player */
 #new-player-form {
   width: 400px;
   padding: 40px;
@@ -333,7 +336,7 @@ transform: translate(-1.5%, -1.5%);
   margin-top: 5%;
   
 }
-
+/* new player form heading */
 #new-player-form h2{
   color: white;
   margin: 0 0 30px;
