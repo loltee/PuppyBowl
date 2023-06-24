@@ -21,7 +21,7 @@ const fetchAllPlayers = async () => {
         console.error('Uh oh, trouble fetching players!', err);
     }
 };
-
+// fetching single player
 const fetchSinglePlayer = async (playerId) => {
     try {
         //fetching single player feom API
@@ -34,12 +34,14 @@ const fetchSinglePlayer = async (playerId) => {
         // teams = teams.data.teams;
         
 
-        //creating div element with class name player  
+
         //for team 
         //<p>${player.teamId}</p> 
         // <p> Score: ${teams.score}</p>
         // <p> TeamsId: ${teams.teamId}</p>
 
+
+        //creating div element with class name player  
         const playerElement = document.createElement("div");
         playerElement.classList.add("detailCard");
         playerElement.innerHTML = `
@@ -185,6 +187,8 @@ const renderAllPlayers = (playerList) => {
  * It renders a form to the DOM, and when the form is submitted, it adds a new player to the database,
  * fetches all players from the database, and renders them to the DOM.
  */
+
+// Adding new player
 const renderNewPlayerForm = () => {
     try {
         const newPlayerForm = document.createElement('form');
