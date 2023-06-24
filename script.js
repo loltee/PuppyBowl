@@ -29,24 +29,28 @@ const fetchSinglePlayer = async (playerId) => {
         let player = await response.json();
         player = player.data.player;
 
-        const teamsResponse = await fetch(teamId);
-        let teams = await teamsResponse.json();
-        teams = teams.data.teams;
+        // const teamsResponse = await fetch(teamId);
+        // let teams = await teamsResponse.json();
+        // teams = teams.data.teams;
         
 
-        //creating div element with class name player  //<p>${player.teamId}</p>
+        //creating div element with class name player  
+        //for team 
+        //<p>${player.teamId}</p> 
+        // <p> Score: ${teams.score}</p>
+        // <p> TeamsId: ${teams.teamId}</p>
+
         const playerElement = document.createElement("div");
         playerElement.classList.add("detailCard");
         playerElement.innerHTML = `
+        <div class="content" id="popup">
         <button class="close-button">X</button>
-                <h2>${player.name}</h2>
+        <h2>${player.name}</h2>
+                <img src="${player.imageUrl}" class="img" alt="${player.name}">
                 <p> Breed: ${player.breed}</p>
                 <p> Status: ${player.status}</p>
-                <p> Score: ${teams.score}</p>
-                <p> TeamsId: ${teams.teamId}</p>
                 <p> CohortId: ${player.cohortId}</p>
-                
-                
+          </div>
                 
             `;
             playerContainer.appendChild(playerElement);
@@ -56,8 +60,8 @@ const fetchSinglePlayer = async (playerId) => {
         playerElement.remove();
     });
 
-    console.log(`${player}+${teams}`);
-    return player && teams;
+    console.log(player);
+    return player;
 
     } catch (err) {
         console.error(`Oh no, trouble fetching player #${playerId}!`, err);
@@ -138,13 +142,16 @@ const renderAllPlayers = (playerList) => {
             const playerElement = document.createElement("div");
             playerElement.classList.add("playerCard");
             playerElement.innerHTML = `
-                    <h2>${player.name}</h2>
-                    <img src="${player.imageUrl}" class="img" alt="${player.name}"></br><br>
-                    <button class="details-button" data-id="${player.id}">
+                    <h2 >${player.name}</h2>
+                    <img src="${player.imageUrl}" class="img" alt="${player.name}" ></br><br>
+                    <button class="details-button"  data-id="${player.id}" >
                     <span></span><span></span><span></span><span></span>See Details</button>
-                    <button class="remove-button" data-id="${player.id}">Remove</button>
+                    <button class="remove-button" data-id="${player.id}" >Remove</button>
+                    
                     `;
+ 
             playerContainer.appendChild(playerElement);
+            
 
             // added eventlisteners to buttons
 
@@ -170,6 +177,8 @@ const renderAllPlayers = (playerList) => {
         console.error('Uh oh, trouble rendering players!', err);
     }
 };
+
+
 
 
 /**

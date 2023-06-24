@@ -25,7 +25,7 @@ body {
 }
 
 .box h1{
-  color: whitesmoke;
+  color: white;
   font-size: 2.4em;
   font-weight: 600;
   letter-spacing: 0.05em;
@@ -119,6 +119,9 @@ body {
   height: 65%;
   
 }
+#all-players-container .playerCard:hover{
+transform: translate(-1.5%, -1.5%);
+}
 
 .playerCard {
   background-color: whitesmoke;
@@ -131,30 +134,14 @@ body {
   text-align: center;
   
 }
-
-.detailCard h2 {
-  text-shadow: 0 0 10px #00b3ff,
-              0 0 20px #4400ff;
-  color: white;
+.playerCard h2 {
+  text-shadow: 0 0 1px #00b3ff;
+  color: black;
   line-height: 1.5;
-  text-align: center;
-  margin-bottom: 10%;
   text-transform: uppercase;
-  font-size: medium;
-  
-
+  font-size: large;
+  font-family: "consolas";
 }
-.detailCard p {
-  text-shadow: 0 0 10px #4400ff,
-              0 0 20px #4400ff;
-  color: white;
-  font-size: 16px;
-  line-height: 1.5;
-  text-align: left;
-  
-}
-
-
 .playerCard img {
   width: 95%;
   height: 60%;
@@ -163,13 +150,52 @@ body {
   margin-top: 5%;
     
 }
-.playerCard h2 {
+
+
+.detailCard .content{
+  position: relative;
+  max-width: 800px;
+}
+
+.detailCard .content img{
+  max-width: 100%;
+  display:block;
+
+
+}
+
+.detailCard h2 {
   text-shadow: 0 0 1px #00b3ff;
   color: black;
   line-height: 1.5;
+  text-align: center;
+  margin-bottom: 10%;
   text-transform: uppercase;
-  font-size: large;
-  font-family: "consolas";
+  font-size: medium;
+
+}
+.detailCard p {
+  text-shadow: 0 0 10px #4400ff,
+              0 0 20px #4400ff;
+  color: black;
+  font-size: 16px;
+  line-height: 1.5;
+  text-align: left;
+  margin-top: 5%;
+  
+}
+
+#popup{
+  position: fixed;
+  top: 55%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 300px;
+  height: 70%;
+  padding: 20px;
+  box-shadow: 0 5px 30px rgba(0,0,0,.30);
+  background: #fff;
+  z-index: 2;
 }
 
 
@@ -280,13 +306,17 @@ body {
 }
 .close-button {
   
-  margin: 5px 90%;
+  margin: 1px 90%;
   border-radius: 5px;
   width: 10%;
+  height: 10%;
+ font-size: 12px;
+ 
 }
 
 .close-button:hover {
-  background-color: rgb(230, 108, 213);
+  background-color: red;
+
 }
 
 
@@ -403,6 +433,7 @@ body {
   transition: 0.5s;
   transition-delay: 0.375s;
 }
+
 
 
 
