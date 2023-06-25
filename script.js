@@ -77,20 +77,21 @@ const renderAllPlayers = (playerList) => {
             allPlayersElement.classList.add('players-card');
             allPlayersElement.innerHTML = `
            <h1>${player.name}</h1>
-           
-          `
+        
+           <img src="${player.imageUrl}" class="dog" alt="${player.name}">
+          <button class="details-button" data-id=${player.id}">
+          <span>See Details</span>
+          <button class="remove-button" data-id=${player.id}">Remove</button>
+           `
             const h1 = document.createElement("h1");
         h1.innerHTML = "hello"
         playerContainer.appendChild(allPlayersElement);
         })
-    //     const allPlayersElement = document.createElement('div');
-    //     allPlayersElement.classList.add('players-card');
-    //     allPlayersElement.innerHTML = `
-    //    <h1>${allPlayers.title}</h1>
-    //     <p>${player-cards}</p>
-    //     <button class="delete-button" data-id="${allPlayers.id}">Remove</button>
-    //     <button class="delete-button" data-id="${allPlayers.id}">See Details</button>
-    //   `
+        const allPlayersElement = document.createElement('div');
+        allPlayersElement.classList.add('players-card');
+        allPlayersElement.innerHTML = `
+       
+      `
     //     const h1 = document.createElement("h1");
     // h1.innerHTML = "hello"
     // playerContainer.appendChild(allPlayersElement);

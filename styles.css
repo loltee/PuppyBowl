@@ -4,10 +4,25 @@
   box-sizing: border-box;
 }
 
+.players-card{
+  width: 250px;
+  height: 250px;
+  border-radius: 8px;
+   margin: 50px;
+  padding: 40px;
+  text-align:auto;
+  
+    
+  
+}
+
+
+
+
 body {
   font-family:  Georgia, 'Times New Roman', Times, serif;
   background-image: url(https://pledgeling-res.cloudinary.com/image/upload/c_fill,f_auto,h_720,q_auto,w_1280/v1/prod-media/images/fundraiser_landing_pages/t2WhIuyHSqSicGhnhbOg_apl_PuppyBowl2022_cover_art_2048x1024.jpg);
-  background-size: 100%;
+  background-size: 120%;
   background-repeat: no-repeat;
 }
 
@@ -19,7 +34,7 @@ body {
   padding: 20px;
 }
 
-.playerCard {
+.players-card .dog{
   background-color: #FFDDC1;
   border: 1px solid #FC4445;
   border-radius: 10px;
@@ -30,7 +45,7 @@ body {
   box-shadow: 2px 2px 10px rgba(0,0,0,0.1);
 }
 
-.playerCard img {
+.playerCard img{
   max-width: 100%;
   height: auto;
   border-radius: 50%;
